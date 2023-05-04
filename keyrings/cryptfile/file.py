@@ -194,6 +194,8 @@ class EncryptedKeyring(Encrypted, Keyring):
         Unlock this keyring by getting the password for the keyring from the
         user.
         """
+        from os import getenv
+        self._keyring_key = getenv("KEYRING_CRYPTFILE_PASSWORD")
         if self._keyring_key is None:
             self._keyring_key = getpass.getpass(
             'Please enter password for encrypted keyring: '
